@@ -32,4 +32,4 @@ Run the app:
   python app.py
 ```
 
-Then go to [](https://localhost:8080)
+Then go to [localhost](https://localhost:8080)
