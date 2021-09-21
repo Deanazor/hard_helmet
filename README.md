@@ -14,7 +14,7 @@ Before you start make sure you have git and libopencv in your machine, if not th
 Go to repository folder :
 
 ```bash
-  cd blood-cell
+  cd harde_helmet
 ```
 
 Install requirements:
