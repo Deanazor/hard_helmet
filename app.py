@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 from flask import Flask, request, render_template, json
-from werkzeug.utils import secure_filename
+from werkzeug.utils import secure_filename, send_file, send_from_directory
 from detection import Predict
 
 UPLOAD_FOLDER = './uploads'
@@ -11,6 +11,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route("/", methods=["GET", "POST"])
 def home():
     response = {}
+    pred_path = ""
     if request.method=="POST":
         file = request.files.get('image')
 
@@ -37,8 +38,11 @@ def home():
         response["status"] = "OK"
 
         Predict(file_path)
-        # response['result'] = [result]
+        pred_path = "darknet/predictions.jpg"
         os.remove(file_path)
+        os.rename(pred_path, "static/predictions.jpg")
+        
+        return render_template("index.html", response=json.dumps(response), pred_img="static/predictions.jpg")
 
     return render_template("index.html", response=json.dumps(response))
 
