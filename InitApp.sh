@@ -27,7 +27,7 @@ mv ./obj.names data
 mv ./obj.data  data
 
 cd ..
-mkdir uploads
+mkdir static
 mkdir uploads
 
 mkdir weights

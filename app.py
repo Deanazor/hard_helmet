@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 from flask import Flask, request, render_template, json
-from werkzeug.utils import secure_filename, send_file, send_from_directory
+from werkzeug.utils import secure_filename
 from detection import Predict
 
 UPLOAD_FOLDER = './uploads'
@@ -41,7 +41,7 @@ def home():
         pred_path = "darknet/predictions.jpg"
         os.remove(file_path)
         os.rename(pred_path, "static/predictions.jpg")
-        
+
         return render_template("index.html", response=json.dumps(response), pred_img="static/predictions.jpg")
 
     return render_template("index.html", response=json.dumps(response))
