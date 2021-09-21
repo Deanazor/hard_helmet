@@ -28,6 +28,7 @@ mv ./obj.data  data
 
 cd ..
 mkdir uploads
+mkdir uploads
 
 mkdir weights
 gdown --id 1FlwerEVNP3sYgI4kAImgcWcUUUKrHT7g
