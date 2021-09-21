@@ -8,10 +8,10 @@ RUN apt-get install libopencv-dev git build-essential -y
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-RUN chmod +x init_app.sh
-RUN ./init_app.sh
-
 COPY . .
+
+RUN chmod +x InitApp.sh
+RUN ./InitApp.sh
 
 EXPOSE 8080
 
