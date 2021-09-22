@@ -17,6 +17,8 @@ Go to repository folder :
   cd hard_helmet
 ```
 
+## Run on Python
+
 Install requirements:
 ```bash
   pip install requirements.txt
@@ -32,4 +34,20 @@ Run the app:
   python app.py
 ```
 
+## Run with docker
+Build docker:
+
+```bash
+  docker build -t deanazor/hard_helmet
+```
+
+Or you can pull from :
+```bash
+  docker pull deaanzor/hard_helmet
+```
+
+And then, run the container:
+```bash
+  docker run --rm -p 8080:8080 deanazor/hard_helmet
+```
 Then go to [localhost](https://localhost:8080)

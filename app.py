@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from flask import Flask, request, render_template, json
 from werkzeug.utils import secure_filename
-from detection import Predict
+from detection import Predict, detr_predict
 
 UPLOAD_FOLDER = './uploads'
 app = Flask(__name__)
@@ -41,6 +41,42 @@ def home():
         pred_path = "darknet/predictions.jpg"
         os.remove(file_path)
         os.rename(pred_path, "static/predictions.jpg")
+
+        return render_template("index.html", response=json.dumps(response), pred_img="static/predictions.jpg")
+
+    return render_template("index.html", response=json.dumps(response))
+
+@app.route("/detr", methods=["GET", "POST"])
+def pred_detr():
+    response = {}
+    pred_path = ""
+    if request.method=="POST":
+        file = request.files.get('image')
+
+        if not file:
+            return {
+                "error": "Image is required"
+            }, 400
+
+        supported_mimetypes = ["image/jpeg", "image/png"]
+        mimetype = file.content_type
+        if mimetype not in supported_mimetypes:
+            return {
+                "error": "Unsupported image type"
+            }, 415
+        
+        current_time = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+        filename = current_time + '-' + file.filename
+        filename = secure_filename(filename)
+
+        response["filename"] = filename
+
+        response["status"] = "OK"
+
+        detr_predict(file)
+        # os.remove(file_path)
+        # pred_path = "darknet/predictions.jpg"
+        # os.rename(pred_path, "static/predictions.jpg")
 
         return render_template("index.html", response=json.dumps(response), pred_img="static/predictions.jpg")
 
