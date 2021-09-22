@@ -33,3 +33,7 @@ mkdir uploads
 mkdir weights
 gdown --id 1FlwerEVNP3sYgI4kAImgcWcUUUKrHT7g
 mv ./yolov4-custom_best.weights weights
+
+mkdir model
+gdown --id 1_NORV5xG5FGR5ztjz5F1yhB23SMOTBxN
+mv ./helmet_model.onnx model
