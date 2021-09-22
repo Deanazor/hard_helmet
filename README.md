@@ -50,4 +50,9 @@ And then, run the container:
 ```bash
   docker run --rm -p 8080:8080 deanazor/hard_helmet
 ```
-Then go to [localhost](https://localhost:8080)
+
+# Try predict some image
+
+Go to [this](https://localhost:8080) link to try using YoloV4 Darknet
+
+Or use [this](https://localhost:8080/detr) link instead to try the DERT model
